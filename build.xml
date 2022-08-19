@@ -62,7 +62,8 @@ $Id$
 <project name="Xalan" default="jar" basedir=".">
 
   <property name="name"                   value="xalan"/>
-  <property name="year"                   value="2014"/>
+  <property name="forkName"               value="PSI"/>
+  <property name="year"                   value="2022"/>
   <property name="build.debug"            value="on"/>
   <property name="compiler.target"        value="1.3"/>
   <property name="compiler.source"        value="1.3"/>
@@ -72,8 +73,8 @@ $Id$
   <property name="version.RELEASE"        value="7"/>
   <property name="version.DEVELOPER"      value=""/><!-- Set this to 'D' if a developer release; blank "" if maintenance release -->
   <property name="version.MINOR"          value="2"/><!-- EITHER the developer release number, or a maintenance release number -->
-  <property name="version"                value="${version.VERSION}_${version.RELEASE}_${version.DEVELOPER}${version.MINOR}"/><!-- GUMP: version # of dist file -->
-  <property name="impl.version"           value="${version.VERSION}.${version.RELEASE}.${version.DEVELOPER}${version.MINOR}"/><!-- Used in jar task for filtering MANIFEST.MF file -->
+  <property name="version"                value="${version.VERSION}_${version.RELEASE}_${version.DEVELOPER}${version.MINOR}-${forkName}"/><!-- GUMP: version # of dist file -->
+  <property name="impl.version"           value="${version.VERSION}.${version.RELEASE}.${version.DEVELOPER}${version.MINOR}-${forkName}"/><!-- Used in jar task for filtering MANIFEST.MF file -->
   
   <!-- Xerces Java version information -->
   <property name="parser.version.VERSION" value="2"/>
@@ -139,9 +140,9 @@ $Id$
   <property name="generated.xpathsym"     value="${src.dir}/${xsltc.reldir}/compiler/sym.java"/>
   
   <!-- Build and distribution output areas -->
-  <property name="build.xalan.jar"              value="${build.dir}/${name}.jar"/><!-- GUMP: actual path/name of jar target output -->
-  <property name="build.xalan-unbundled.jar"    value="${build.dir}/${name}-unbundled.jar"/>
-  <property name="build.xalan-interpretive.jar" value="${build.dir}/${name}.jar"/>
+  <property name="build.xalan.jar"              value="${build.dir}/${name}-${version}.jar"/><!-- GUMP: actual path/name of jar target output -->
+  <property name="build.xalan-unbundled.jar"    value="${build.dir}/${version}-unbundled.jar"/>
+  <property name="build.xalan-interpretive.jar" value="${build.dir}/${version}.jar"/>
   <property name="build.xsltc.jar"              value="${build.dir}/xsltc.jar"/>
   <property name="build.classes"                value="${build.dir}/classes"/>
   <property name="build.docs"                   value="${build.dir}/docs"/>
@@ -201,7 +202,7 @@ $Id$
   <property name="serializer.impl.version"      value="${impl.version}"/>
   <property name="serializer.java.version"      value="${java.version}"/>
   <property name="serializer.java.vendor"       value="${java.vendor}"/>
-  <property name="serializer.jar.name"          value="serializer.jar"/>   
+  <property name="serializer.jar.name"          value="serializer-${version}.jar"/>
   <property name="build.serializer.jar"         value="${serializer.build.dir}/${serializer.jar.name}"/> 
   <property name="lib.serializer.jar"           value="./lib/${serializer.jar.name}"/>   
  
